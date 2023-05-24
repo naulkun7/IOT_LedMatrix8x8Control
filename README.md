@@ -15,12 +15,13 @@
 ## Introduction <a name="Introduction"></a> :smile:
 ### Group: Noname :star_struck:
 ### Our team member
-| Index | Name                   |     ID      |
-|:------|:-----------------------|:-----------:|
-| 1     | Trần Quang Trí | ITITIU20325 | 
-| 2     | Nguyễn Hoàng Luân | ITITIU20012 | 
-| 3     | Bùi Nhật Quang Trường  | ITITIU20333 | 
-| 4     | Nguyễn Thanh Hiền | ITITIU18 |   
+| Index | Name                   |     ID      | Contribution |
+|:------|:-----------------------|:-----------:|:------------:|
+| 1     | Trần Quang Trí | ITITIU20325 | 20%
+| 2     | Nguyễn Hoàng Luân | ITITIU20012 | 20%
+| 3     | Bùi Nhật Quang Trường  | ITITIU20333 | 20%
+| 4     | Nguyễn Thanh Hiền | ITITIU20142 |   20%
+| 5     | Nguyễn Hồng Quân | ITITIU18 |   20%
 
 ## Demo <a name="Demo"></a>  :star2:
 ![image](https://res.cloudinary.com/dpmcy6bbr/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1684940331/apple_iukhvz.jpg)
