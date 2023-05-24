@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .container {
+        width: 80%;
+        margin: 0 auto;
+        background-color: #f2f2f2;
+        padding: 20px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      header #title {
+        text-align: center;
+      }
+
+      header .create-link {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      header .create-link #inputText {
+        width: 80%;
+        text-align: center;
+      }
+
+      .main .box {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .main .box .small-box {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+      }
+
+      .main .box .small-box .image {
+        object-fit: cover;
+        aspect-ratio: 3/3;
+        width: 200px;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1 id="title">IOT PROJECT</h1>
+        <div class="create-link">
+          <input type="text" id="inputText" placeholder="Enter a URL" />
+          <hr />
+          <button onclick="createLink()">Create image</button>
+          <div id="output" style="margin-top: 20px"></div>
+        </div>
+      </div>
+    </header>
+    <div class="main">
+      <div class="container">
+        <div class="box">
+          <div class="small-box">
+            <h2 class="box-title">Cat</h2>
+            <img
+              class="image"
+              src="https://res.cloudinary.com/dpmcy6bbr/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1684940329/cat_whwbg9.jpg"
+              alt="Cat"
+            />
+            <a href="/136,248,168,113,033,121,125,190," class="button">Cat</a>
+          </div>
+          <div class="small-box">
+            <h2 class="box-title">Heart</h2>
+            <img
+              class="image"
+              src="https://hackster.imgix.net/uploads/attachments/1523703/q4_GIrF3d5Gzo.jpeg?auto=compress%2Cformat&w=1280&h=960&fit=max"
+              alt="Heart"
+            />
+            <a href="/000,102,255,255,126,060,024,000," class="button">Heart</a>
+          </div>
+          <div class="small-box">
+            <h2 class="box-title">Apple</h2>
+            <img
+              class="image"
+              src="https://res.cloudinary.com/dpmcy6bbr/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1684940331/apple_iukhvz.jpg"
+              alt="Apple"
+            />
+            <a href="/024,008,118,255,255,255,122,052," class="button">Apple</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function createLink() {
+        var input = document.getElementById("inputText").value;
+        var outputDiv = document.getElementById("output");
+
+        var newSmallBox = document.createElement("div");
+        newSmallBox.className = "small-box";
+
+        var title = document.createElement("h2");
+        title.className = "box-title";
+        title.textContent = "New Image";
+
+        var image = document.createElement("img");
+        image.className = "image";
+        image.src = input;
+        image.alt = "New Image";
+
+        var link = document.createElement("a");
+        link.className = "button";
+        link.href = input;
+        link.textContent = "New Image";
+
+        newSmallBox.appendChild(title);
+        newSmallBox.appendChild(image);
+        newSmallBox.appendChild(link);
+
+        var box = document.querySelector(".box");
+        box.appendChild(newSmallBox);
+
+        document.getElementById("inputText").value = "";
+      }
+    </script>
+  </body>
+</html>
