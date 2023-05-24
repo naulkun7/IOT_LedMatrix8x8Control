@@ -16,6 +16,18 @@
         border-radius: 5px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
+      .led {
+        width: 20px;
+        height: 20px;
+        background-color: black;
+        display: inline-block;
+        margin: 1px;
+        cursor: pointer;
+      }
+
+      .led.on {
+        background-color: red;
+      }
       header #title {
         text-align: center;
       }
@@ -66,6 +78,95 @@
         </div>
       </div>
     </header>
+    <div id="matrix">
+      <div class="container">
+        <h1>LED Matrix Tool</h1>
+        <p>Click on an LED to toggle it on or off:</p>
+        <!-- Generate 8x8 LED matrix -->
+        <div class="row">
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+        </div>
+        <div class="row">
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+        </div>
+        <div class="row">
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+        </div>
+        <div class="row">
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+        </div>
+        <div class="row">
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+        </div>
+        <div class="row">
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+        </div>
+        <div class="row">
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+        </div>
+        <div class="row">
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+          <div class="led"></div>
+        </div>
+        <p>Binary value: <span id="binary"></span></p>
+        <p>Decimal format: <span id="decimal"></span></p>
+      </div>
+    </div>
     <div class="main">
       <div class="container">
         <div class="box">
@@ -129,6 +230,43 @@
         box.appendChild(newSmallBox);
 
         document.getElementById("inputText").value = "";
+      }
+
+      // Add click event listener to each LED
+      var leds = document.getElementsByClassName("led");
+      for (var i = 0; i < leds.length; i++) {
+        leds[i].addEventListener("click", toggleLED);
+      }
+
+      // Toggle the LED and update the binary value
+      function toggleLED() {
+        this.classList.toggle("on");
+        updateBinary();
+        updateDecimal();
+      }
+
+      // Update the binary value based on the state of LEDs
+      function updateBinary() {
+        var binary = "";
+        for (var i = 0; i < leds.length; i++) {
+          binary += leds[i].classList.contains("on") ? "1" : "0";
+        }
+        // Add leading zeros if necessary
+        while (binary.length < 64) {
+          binary = "0" + binary;
+        }
+        document.getElementById("binary").textContent = binary;
+      }
+
+      // Convert the binary value to decimal format
+      function updateDecimal() {
+        var binary = document.getElementById("binary").textContent;
+        var decimal = parseInt(binary, 2);
+        var decimalFormat = decimal.toLocaleString("en-US", {
+          minimumIntegerDigits: 3,
+        });
+        document.getElementById("decimal").textContent =
+          "/" + decimalFormat + ",";
       }
     </script>
   </body>
