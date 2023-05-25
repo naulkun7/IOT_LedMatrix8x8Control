@@ -167,6 +167,14 @@
         <p>Decimal format: <span id="decimal"></span></p>
       </div>
     </div>
+    <div class="convert">
+      <div class="container">
+        <p>Input a hexadecimal value:</p>
+        <input type="text" id="inputHex" />
+        <button onclick="convertToDecimal()">Convert</button>
+        <p>Decimal format: <span id="decimal"></span></p>
+      </div>
+    </div>
     <div class="main">
       <div class="container">
         <div class="box">
@@ -248,14 +256,35 @@
       // Update the binary value based on the state of LEDs
       function updateBinary() {
         var binary = "";
-        for (var i = 0; i < leds.length; i++) {
-          binary += leds[i].classList.contains("on") ? "1" : "0";
+        var index = 0;
+
+        var rows = document.getElementsByClassName("row");
+        for (var i = 0; i < rows.length; i++) {
+          var leds = rows[i].getElementsByClassName("led");
+          for (var j = 0; j < leds.length; j++) {
+            binary += leds[j].classList.contains("on") ? "1" : "0";
+            index++;
+            if (index >= 64) {
+              break;
+            }
+          }
+          if (index >= 64) {
+            break;
+          }
         }
-        // Add leading zeros if necessary
+
+        // Pad with leading zeros if necessary
         while (binary.length < 64) {
           binary = "0" + binary;
         }
-        document.getElementById("binary").textContent = binary;
+
+        var decimal = parseInt(binary, 2);
+        var decimalFormat = decimal.toLocaleString("en-US", {
+          minimumIntegerDigits: 3,
+        });
+        var formattedBinary = `/${decimalFormat},`;
+
+        document.getElementById("binary").textContent = formattedBinary;
       }
 
       // Convert the binary value to decimal format
@@ -267,6 +296,25 @@
         });
         document.getElementById("decimal").textContent =
           "/" + decimalFormat + ",";
+      }
+
+      function convertToDecimal() {
+        const hexInput = document.getElementById("inputHex").value;
+
+        // Split the input into individual hexadecimal values
+        const hexValues = hexInput.split(",");
+
+        // Convert each hexadecimal value to decimal
+        const decimalValues = hexValues.map((hex) => parseInt(hex.trim(), 16));
+
+        // Format decimal values as per your specified format
+        const formattedDecimal = decimalValues.map((decimal) =>
+          decimal.toString().padStart(3, "0")
+        );
+
+        // Update the decimal format display
+        document.getElementById("decimal").textContent =
+          "/" + formattedDecimal.join(",");
       }
     </script>
   </body>
